@@ -11,8 +11,8 @@ struct MatrixSolverFixture {
   {
     A = MatrixXd(3, 3);
     A << 1, 2, 3,
-         4, 5, 6,
-         7, 8, 9;
+        4, 5, 6,
+        7, 8, 9;
 
     b = VectorXd(3);
     b << 3.5, 11, 18.5;

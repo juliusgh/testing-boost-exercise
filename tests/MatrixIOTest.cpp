@@ -11,21 +11,20 @@ struct MatrixIOFixture {
     expectedM3 = MatrixXd(3, 3);
     expectedM3 << 0.680375, 0.59688, -0.329554,
         -0.211234, 0.823295, 0.536459,
-         0.566198, -0.604897, -0.444451;
+        0.566198, -0.604897, -0.444451;
   }
 
-  MatrixXd expectedM3;
+  MatrixXd    expectedM3;
   std::string pathM3 = "../data/m3.csv";
-  
 };
 
 BOOST_FIXTURE_TEST_SUITE(MatrixIOTests, MatrixIOFixture, *boost::unit_test::tolerance(1e-12))
 
 BOOST_AUTO_TEST_CASE(LoadM3Matrix)
 {
-  int expectedRows = expectedM3.rows();
-  int expectedCols = expectedM3.cols();
-  MatrixXd M3 = matrixIO::openData(this->pathM3, expectedRows);
+  int      expectedRows = expectedM3.rows();
+  int      expectedCols = expectedM3.cols();
+  MatrixXd M3           = matrixIO::openData(this->pathM3, expectedRows);
 
   // Check dimensions
   BOOST_TEST(M3.rows() == expectedRows);
@@ -40,9 +39,9 @@ BOOST_AUTO_TEST_CASE(LoadM3Matrix)
 
 BOOST_AUTO_TEST_CASE(LoadM10Matrix)
 {
-  int expectedRows = 10;
-  int expectedCols = 10;
-  MatrixXd M10 = matrixIO::openData(this->pathM10, expectedRows);
+  int      expectedRows = 10;
+  int      expectedCols = 10;
+  MatrixXd M10          = matrixIO::openData(this->pathM10, expectedRows);
 
   // Check dimensions
   BOOST_TEST(M10.rows() == expectedRows);
@@ -51,9 +50,9 @@ BOOST_AUTO_TEST_CASE(LoadM10Matrix)
 
 BOOST_AUTO_TEST_CASE(LoadM50Matrix)
 {
-  int expectedRows = 50;
-  int expectedCols = 50;
-  MatrixXd M50 = matrixIO::openData(this->pathM50, expectedRows);
+  int      expectedRows = 50;
+  int      expectedCols = 50;
+  MatrixXd M50          = matrixIO::openData(this->pathM50, expectedRows);
 
   // Check dimensions
   BOOST_TEST(M50.rows() == expectedRows);
@@ -62,9 +61,9 @@ BOOST_AUTO_TEST_CASE(LoadM50Matrix)
 
 BOOST_AUTO_TEST_CASE(LoadM250Matrix)
 {
-  int expectedRows = 250;
-  int expectedCols = 250;
-  MatrixXd M10 = matrixIO::openData(this->pathM250, expectedRows);
+  int      expectedRows = 250;
+  int      expectedCols = 250;
+  MatrixXd M10          = matrixIO::openData(this->pathM250, expectedRows);
 
   // Check dimensions
   BOOST_TEST(M10.rows() == expectedRows);
@@ -73,9 +72,9 @@ BOOST_AUTO_TEST_CASE(LoadM250Matrix)
 
 BOOST_AUTO_TEST_CASE(LoadM250Matrix)
 {
-  int expectedRows = 50;
-  int expectedCols = 50;
-  MatrixXd M50 = matrixIO::openData(this->pathM50, expectedRows);
+  int      expectedRows = 50;
+  int      expectedCols = 50;
+  MatrixXd M50          = matrixIO::openData(this->pathM50, expectedRows);
 
   // Check dimensions
   BOOST_TEST(M50.rows() == expectedRows);
