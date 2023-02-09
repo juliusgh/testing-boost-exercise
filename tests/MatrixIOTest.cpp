@@ -16,6 +16,9 @@ struct MatrixIOFixture {
 
   MatrixXd    expectedM3;
   std::string pathM3 = "../data/m3.csv";
+  std::string pathM10 = "../data/m10.csv";
+  std::string pathM50 = "../data/m50.csv";
+  std::string pathM250 = "../data/m250.csv";
 };
 
 BOOST_FIXTURE_TEST_SUITE(MatrixIOTests, MatrixIOFixture, *boost::unit_test::tolerance(1e-12))
@@ -63,22 +66,11 @@ BOOST_AUTO_TEST_CASE(LoadM250Matrix)
 {
   int      expectedRows = 250;
   int      expectedCols = 250;
-  MatrixXd M10          = matrixIO::openData(this->pathM250, expectedRows);
+  MatrixXd M250         = matrixIO::openData(this->pathM250, expectedRows);
 
   // Check dimensions
-  BOOST_TEST(M10.rows() == expectedRows);
-  BOOST_TEST(M10.cols() == expectedCols);
-}
-
-BOOST_AUTO_TEST_CASE(LoadM250Matrix)
-{
-  int      expectedRows = 50;
-  int      expectedCols = 50;
-  MatrixXd M50          = matrixIO::openData(this->pathM50, expectedRows);
-
-  // Check dimensions
-  BOOST_TEST(M50.rows() == expectedRows);
-  BOOST_TEST(M50.cols() == expectedCols);
+  BOOST_TEST(M250.rows() == expectedRows);
+  BOOST_TEST(M250.cols() == expectedCols);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
