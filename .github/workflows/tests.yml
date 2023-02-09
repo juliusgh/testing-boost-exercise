@@ -1,0 +1,57 @@
+name: Style check and tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  style_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Install tools"
+        run: sudo apt update && sudo apt -y install clang
+      - name: "Run style check"
+        run: clang-format -i src/*.hpp src/*.cpp tests/*.cpp --dry-run -Werror
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Install C++ dependencies"
+        run: sudo apt update && sudo apt -y install gcc cmake libeigen3-dev libyaml-cpp-dev libboost-test-dev
+      - name: "Create build folder"
+        run: mkdir build
+      - name: "Run cmake"
+        working-directory: ./build
+        run: cmake ..
+      - name: "Run make"
+        working-directory: ./build
+        run:  make
+      - name: "Create build artifact"
+        run: tar -cvf build.tar build
+      - name: "Upload build artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build.tar
+          retention: 3 hours
+          if-no-files-found: error
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Install C++ dependencies"
+        run: sudo apt update && sudo apt -y install gcc cmake libeigen3-dev libyaml-cpp-dev libboost-test-dev
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+      - name: "Extract build artifact"
+        run: tar -xf build.tar build
+      - name: "Run tests"
+        working-directory: ./build
+        run: make test
