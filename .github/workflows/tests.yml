@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "Install tools"
-        run: apt update && sudo apt -y install clang
+        run: sudo apt update && sudo apt -y install clang
       - name: "Run style check"
         run: clang-format -i src/*.hpp src/*.cpp tests/*.cpp --dry-run -Werror
   build:
