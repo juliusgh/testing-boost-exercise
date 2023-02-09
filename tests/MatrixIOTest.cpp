@@ -15,9 +15,9 @@ struct MatrixIOFixture {
   }
 
   MatrixXd    expectedM3;
-  std::string pathM3 = "../data/m3.csv";
-  std::string pathM10 = "../data/m10.csv";
-  std::string pathM50 = "../data/m50.csv";
+  std::string pathM3   = "../data/m3.csv";
+  std::string pathM10  = "../data/m10.csv";
+  std::string pathM50  = "../data/m50.csv";
   std::string pathM250 = "../data/m250.csv";
 };
 
